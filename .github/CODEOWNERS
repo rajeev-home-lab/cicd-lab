@@ -1,0 +1,17 @@
+# Default ownership
+* @rajeev-home-lab/eis-developers
+
+# API specifications
+/api/ @rajeev-home-lab/eis-api-governance
+
+# GitHub Actions / CI-CD
+/.github/workflows/ @rajeev-home-lab/eis-platform @rajeev-home-lab/eis-devops
+
+# Scripts
+/scripts/ @rajeev-home-lab/eis-platform
+
+# APIOps
+/apiops/ @rajeev-home-lab/eis-platform
+
+# Security configuration
+/SECURITY.md @rajeev-home-lab/eis-devops
