@@ -1,1 +1,52 @@
+name: CI-CD Environment Promotion
 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sandbox:
+    name: Deploy to SANDBOX
+    runs-on: ubuntu-latest
+    environment: SANDBOX
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to SANDBOX
+        run: |
+          echo "Deploying commit $GITHUB_SHA to SANDBOX"
+          echo "SANDBOX deployment completed successfully."
+
+  qa:
+    name: Deploy to QA
+    runs-on: ubuntu-latest
+    needs: sandbox
+    environment: QA
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to QA
+        run: |
+          echo "Deploying commit $GITHUB_SHA to QA"
+          echo "QA deployment completed successfully."
+
+  production:
+    name: Deploy to PRODUCTION
+    runs-on: ubuntu-latest
+    needs: qa
+    environment: PRODUCTION
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to PRODUCTION
+        run: |
+          echo "Deploying commit $GITHUB_SHA to PRODUCTION"
+          echo "PRODUCTION deployment completed successfully."
